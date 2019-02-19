@@ -2,10 +2,13 @@ import { createStore, applyMiddleware, compose as defaultCompose, combineReducer
 import reducers from './reducers'
 import rejectedPromiseMiddleware from './middlewares/rejectedPromise'
 import promiseMiddleware from 'redux-promise-middleware'
+import { createLogger } from 'redux-logger'
+
 import eventsMiddleware from './middlewares/events'
 
 export default function (preloadedState) {
   let compose = defaultCompose
+
   /* global __REDUX_DEVTOOLS_EXTENSION_COMPOSE__:false */
   if (typeof __REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
     // if you install the Redux Devtools extension (see https://github.com/zalmoxisus/redux-devtools-extension)
@@ -13,11 +16,14 @@ export default function (preloadedState) {
     compose = __REDUX_DEVTOOLS_EXTENSION_COMPOSE__
   }
 
+  const loggerMiddleware = createLogger({})
   const rootReducer = combineReducers(reducers)
+
   const enhancers = compose(applyMiddleware(
     rejectedPromiseMiddleware,
     promiseMiddleware,
-    eventsMiddleware
+    eventsMiddleware,
+    loggerMiddleware
   ))
 
   const store = createStore(rootReducer, preloadedState, enhancers)
@@ -27,6 +33,7 @@ export default function (preloadedState) {
     module.hot.accept('./reducers', () => {
       const reducers = require('./reducers')
       const rootReducer = combineReducers(reducers)
+
       store.replaceReducer(rootReducer)
     })
   }
