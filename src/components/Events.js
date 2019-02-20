@@ -8,13 +8,18 @@ import titleIcon from '../icons/vivid-angle-top-left.svg'
 import theme from '../style/theme'
 import Event from './Event'
 
+import Loader from './Loader'
+
 const Events = ({ classes, ready, events, count }) => (
   <div className={classes.container}>
     <h3 className={classes.title}>
       <Icon className={classes.titleIcon} symbol={titleIcon} />
       Results{ready && `: ${count} events found`}
     </h3>
-    {!ready && <p>Loading...</p>}
+    {/* <Loader /> */}
+    {!ready && <Loader />}
+    {/* Tried to use React.Suspense here because it is just 10 bars of awesome, but turns out ReactDOMServer does not support suspense yet */}
+    {/* I really wanted to use the maxDuration property of suspense to only show the loading wheel if the response was slow, but it was not to be */}
     {ready && (
       <div className={classes.tilesWrapper}>
         <div className={classes.tiles}>
