@@ -1,7 +1,7 @@
 export const colors = {
   black: '#000',
   heading: '#18163b',
-  lightText: '#9a9a9a',
+  lightText: '#4a4a4a', // On my screen, this text was too light. I could read it, but someone with minor eyesight issues may struggle
   text: '#292929',
   primary: '#dc1a83',
   white: '#fff'

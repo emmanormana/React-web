@@ -2,17 +2,17 @@ import React from 'react'
 import injectSheet from 'react-jss'
 import { connect } from 'react-redux'
 import { compose } from 'redux'
-import { getEvents, isEventsReady } from '../selectors'
+import { getEvents, isEventsReady, count } from '../selectors'
 import Icon from './Icon'
 import titleIcon from '../icons/vivid-angle-top-left.svg'
 import theme from '../style/theme'
 import Event from './Event'
 
-const Events = ({ classes, ready, events }) => (
+const Events = ({ classes, ready, events, count }) => (
   <div className={classes.container}>
     <h3 className={classes.title}>
       <Icon className={classes.titleIcon} symbol={titleIcon} />
-      Results
+      Results{ready && `: ${count} events found`}
     </h3>
     {!ready && <p>Loading...</p>}
     {ready && (
@@ -27,7 +27,8 @@ const Events = ({ classes, ready, events }) => (
 
 const mapStateToProps = (state) => ({
   ready: isEventsReady(state),
-  events: getEvents(state)
+  events: getEvents(state),
+  count: count(state.events.events)
 })
 
 export default compose(
