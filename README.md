@@ -1,3 +1,7 @@
+# Martin Wood
+Note, I did not include any additional testing in this, as there was none in the base project, therefore it seemed out of scope. 
+I would gladly discuss testing with you during an interview, however if you were expecting to see some I would highly recommend adding a mention about it into your readme :)
+
 ![Nightjar](https://avatars1.githubusercontent.com/u/33653623?s=100&v=4)
 
 # 📋 Nightjar React Coding Exercise
