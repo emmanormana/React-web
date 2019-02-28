@@ -5,6 +5,7 @@ import promiseMiddleware from 'redux-promise-middleware'
 import { createLogger } from 'redux-logger'
 
 import eventsMiddleware from './middlewares/events'
+import favouritesMiddleware from './middlewares/favourite'
 
 export default function (preloadedState) {
   let compose = defaultCompose
@@ -23,6 +24,8 @@ export default function (preloadedState) {
     rejectedPromiseMiddleware,
     promiseMiddleware,
     eventsMiddleware,
+    favouritesMiddleware,
+    // Always add logger last
     loggerMiddleware
   ))
 

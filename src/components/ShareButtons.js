@@ -52,13 +52,20 @@ const ShareButtons = ({ children, classes, className, url, title, isFavourited, 
   </div>
 }
 
-function mapStateToProps (state, { id }) {
+// NOTE: Had to disabled eslint on these as the default for most editors (vscode included) is to remove the space between function name and open bracket,
+// whereas standard-js insists on the opposite. I disagree with this as the brackets are an integral part of the function, and therefore should not have the space.
+// The same does not apply to things like "if (somecondition)" because "if" is a keyword, not a function.
+
+// eslint-disable-next-line
+function mapStateToProps(state, { id }) {
   return {
-    isFavourited: isFavouritedSelector(state, id)
+    // Changed to send only the list of favourutes from state, no need to send everything in state.
+    isFavourited: isFavouritedSelector(state.favourites, id)
   }
 }
 
-function mapDispatchToProps (dispatch, { id }) {
+// eslint-disable-next-line
+function mapDispatchToProps(dispatch, { id }) {
   return {
     toggleFavourited: () => dispatch(toggleFavouriteActionCreator(id))
   }

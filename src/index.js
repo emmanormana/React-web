@@ -8,7 +8,9 @@ import { REHYDRATED } from './actions'
 import App from './components/App'
 import * as serviceWorker from './serviceWorker'
 
-function getPreloadedState () {
+// Another instance where standard-js is too opinionated
+// eslint-disable-next-line
+function getPreloadedState() {
   const preloadedStateEl = document.getElementById('redux-preinit')
   if (preloadedStateEl) {
     const preloadedState = JSON.parse(preloadedStateEl.innerText)
